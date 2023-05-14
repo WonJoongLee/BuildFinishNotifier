@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.isaac"
-version = "1.0-SNAPSHOT"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
@@ -29,6 +29,7 @@ tasks {
     patchPluginXml {
         sinceBuild.set("213")
         untilBuild.set("223.*")
+        changeNotes.set("This plugin is designed to notify you with sound effects when your build process succeeds or failed.")
     }
 
     signPlugin {
