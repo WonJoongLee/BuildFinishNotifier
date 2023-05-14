@@ -14,10 +14,10 @@
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
     <h2>Build Completion Sound Effect</h2><br>
-    This plugin is designed to notify you when your build process is complete with sound effects.<br>
+    This plugin is designed to notify you when your build process is complete with sound effects.<br><br>
     Usage:<br>
     - If the build is successful, a success sound effect will be played.<br>
-    - If the build failed, a fail sound effect will be played.<br>
+    - If the build failed, a fail sound effect will be played.<br><br>
     Note: Please make sure your speakers or headphones are properly connected and the volume is adjusted accordingly.<br>
   ]]></description>
 
