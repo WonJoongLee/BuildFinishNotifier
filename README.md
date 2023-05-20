@@ -1,5 +1,5 @@
 # BuildFinishNotifier
-**Build finish notifier** is an Android Studio plugin that audibly notifies programmers when a build is finished. 
+**Build finish notifier** is an Android Studio plugin that audibly notifies when the build is finished. 
 
 <p align="center">
   <image src="https://github.com/WonJoongLee/BuildFinishNotifier/assets/57510192/8e654f74-99b9-402b-a41b-759619ec1acb" width="150"/>
