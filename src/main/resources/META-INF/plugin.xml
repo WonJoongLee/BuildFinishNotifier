@@ -24,7 +24,8 @@
 
     <actions>
         <action id="com.isaac.buildfinishnotifier.Settings" class="com.isaac.buildfinishnotifier.Settings"
-                text="Build Finish Settings" description="Change build finish settings">
+                text="Build Finish Notifier : Settings" description="Change build finish settings">
+            <override-text place="MainMenu" text="Build Finish Settings"/>
             <add-to-group group-id="ToolsMenu" anchor="last"/>
         </action>
     </actions>
