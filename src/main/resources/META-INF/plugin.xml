@@ -21,4 +21,11 @@
         <listener class="com.isaac.buildfinishnotifier.BuildFinishNotifier"
                   topic="com.android.tools.idea.gradle.project.build.GradleBuildListener"/>
     </projectListeners>
+
+    <actions>
+        <action id="com.isaac.buildfinishnotifier.Settings" class="com.isaac.buildfinishnotifier.Settings"
+                text="Build Finish Settings" description="Change build finish settings">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>
