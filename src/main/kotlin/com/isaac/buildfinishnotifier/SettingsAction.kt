@@ -4,13 +4,13 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.isaac.buildfinishnotifier.icon.BFNIcons
 
-class Settings : AnAction() {
+class SettingsAction : AnAction() {
 
     init {
         templatePresentation.icon = BFNIcons.icon
     }
 
-    override fun actionPerformed(p0: AnActionEvent) {
-        TODO("Not yet implemented")
+    override fun actionPerformed(event: AnActionEvent) {
+        SettingsDialog(event.project).show()
     }
 }

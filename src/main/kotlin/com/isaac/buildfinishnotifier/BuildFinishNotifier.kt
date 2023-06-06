@@ -14,8 +14,8 @@ class BuildFinishNotifier : GradleBuildListener {
 
     private fun playEndSound(status: BuildStatus) {
         when (status) {
-            BuildStatus.SUCCESS -> UIUtil.playSoundFromResource("/success_sound_1.wav")
-            BuildStatus.FAILED -> UIUtil.playSoundFromResource("/fail_sound_1.wav")
+            BuildStatus.SUCCESS -> UIUtil.playSoundFromResource("/sounds/success_sound_1.wav")
+            BuildStatus.FAILED -> UIUtil.playSoundFromResource("/sounds/fail_sound_1.wav")
             else -> Unit
         }
     }

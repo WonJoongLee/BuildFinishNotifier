@@ -11,6 +11,10 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    implementation("com.googlecode.soundlibs:jlayer:1.0.1.4")
+}
+
 intellij {
     plugins.set(listOf("Kotlin", "android"))
     localPath.set("/Applications/Android Studio.app/Contents")
