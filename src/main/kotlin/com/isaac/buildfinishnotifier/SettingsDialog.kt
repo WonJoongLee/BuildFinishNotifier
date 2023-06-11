@@ -24,7 +24,6 @@ class SettingsDialog(private val project: Project?) : DialogWrapper(project, tru
     private var customSucceedSoundPath = ""
     private var customFailedSoundPath = ""
     private var isDefault = true
-    private var isCustomSelected = false
     private lateinit var defaultSoundRadioButton: JBRadioButton
     private lateinit var customSoundRadioButton: JBRadioButton
     private lateinit var customSucceedButton: TextFieldWithBrowseButton
@@ -41,8 +40,8 @@ class SettingsDialog(private val project: Project?) : DialogWrapper(project, tru
             customFailedButton.text.isNotEmpty() -> customFailedButton.text
             else -> ""
         }
-
     private val configService = ConfigService.getInstance()
+    private var isDefaultSoundRecentlyChosen = configService.shouldPlayDefaultSound()
 
     init {
         title = "Build Finish Settings"
@@ -79,11 +78,11 @@ class SettingsDialog(private val project: Project?) : DialogWrapper(project, tru
 
     override fun doOKAction() {
         if (successPathText.isNotEmpty()) {
-            copySoundEffect(successPathText, SoundType.BUILD_SUCCESS)
+            copySoundEffectToCacheDirectory(successPathText, SoundType.BUILD_SUCCESS)
         }
 
         if (failedPathText.isNotEmpty()) {
-            copySoundEffect(failedPathText, SoundType.BUILD_FAILED)
+            copySoundEffectToCacheDirectory(failedPathText, SoundType.BUILD_FAILED)
         }
 
         configService.setShouldPlayDefaultSound(defaultSoundRadioButton.isSelected)
@@ -91,7 +90,7 @@ class SettingsDialog(private val project: Project?) : DialogWrapper(project, tru
         super.doOKAction()
     }
 
-    private fun copySoundEffect(
+    private fun copySoundEffectToCacheDirectory(
         soundEffectPath: String,
         soundType: SoundType
     ) {
@@ -103,8 +102,12 @@ class SettingsDialog(private val project: Project?) : DialogWrapper(project, tru
                     val toDir =
                         VfsUtil.createDirectoryIfMissing("${PathManager.getBinPath()}/buildFinishSounds")
                     if (fileToCopy != null && toDir != null) {
-                        val copiedFilePath = VfsUtilCore.copyFile(this, fileToCopy, toDir)
-                        copiedFilePath.rename(this, "${soundType.getCustomFileName()}.mp3")
+                        val copyOfUserSelectedSoundFile = File(VfsUtilCore.copyFile(this, fileToCopy, toDir).path)
+                        val customSoundFileName = "${soundType.getCustomFileName()}.mp3"
+                        val customSoundFile = File(toDir.path, customSoundFileName)
+                        val newName =
+                            "${customSoundFile.path.substringBeforeLast("/")}/${soundType.getCustomFileName()}.mp3"
+                        copyOfUserSelectedSoundFile.renameTo(File(newName))
                     }
                 }
             }
@@ -124,10 +127,10 @@ class SettingsDialog(private val project: Project?) : DialogWrapper(project, tru
 
                 buttonsGroup {
                     row {
-                        defaultSoundRadioButton = radioButton("Default sound", isCustomSelected).component
+                        defaultSoundRadioButton = radioButton("Default sound", isDefaultSoundRecentlyChosen).component
                     }
                     row {
-                        customSoundRadioButton = radioButton("Custom sound", !isCustomSelected).component
+                        customSoundRadioButton = radioButton("Custom sound", !isDefaultSoundRecentlyChosen).component
                     }
                 }.bind({ isDefault }, { isDefault = it })
 

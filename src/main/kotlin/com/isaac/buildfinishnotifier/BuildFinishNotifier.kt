@@ -25,7 +25,10 @@ class BuildFinishNotifier : GradleBuildListener {
                 if (configService.shouldPlayDefaultSound()) {
                     UIUtil.playSoundFromResource("/sounds/success_sound_1.wav")
                 } else {
-                    playSound(SoundType.BUILD_SUCCESS.getCustomFilePath())
+                    playSound(
+                        filePath = SoundType.BUILD_SUCCESS.getCustomFilePath(),
+                        onFailure = this::playDefaultSuccessSound
+                    )
                 }
             }
 
@@ -33,7 +36,10 @@ class BuildFinishNotifier : GradleBuildListener {
                 if (configService.shouldPlayDefaultSound()) {
                     UIUtil.playSoundFromResource("/sounds/fail_sound_1.wav")
                 } else {
-                    playSound(SoundType.BUILD_FAILED.getCustomFilePath())
+                    playSound(
+                        filePath = SoundType.BUILD_FAILED.getCustomFilePath(),
+                        onFailure = this::playDefaultFailedSound
+                    )
                 }
             }
 
@@ -41,13 +47,22 @@ class BuildFinishNotifier : GradleBuildListener {
         }
     }
 
-    private fun playSound(filePath: String) {
+    private fun playSound(filePath: String, onFailure: () -> Unit) {
         kotlin.runCatching {
             val inputStream = BufferedInputStream(FileInputStream(filePath))
             val player = AdvancedPlayer(inputStream)
             player.play()
         }.onFailure {
+            onFailure()
             println("@@@ error occurred in BuildFinishNotifier : $it")
         }
+    }
+
+    private fun playDefaultSuccessSound() {
+        UIUtil.playSoundFromResource("/sounds/success_sound_1.wav")
+    }
+
+    private fun playDefaultFailedSound() {
+        UIUtil.playSoundFromResource("/sounds/fail_sound_1.wav")
     }
 }
