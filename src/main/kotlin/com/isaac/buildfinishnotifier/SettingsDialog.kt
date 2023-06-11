@@ -15,10 +15,8 @@ import com.intellij.ui.components.JBRadioButton
 import com.intellij.ui.dsl.builder.bind
 import com.intellij.ui.dsl.builder.panel
 import com.intellij.ui.layout.selected
-import javazoom.jl.player.advanced.AdvancedPlayer
-import java.io.BufferedInputStream
+import com.isaac.buildfinishnotifier.data.ConfigService
 import java.io.File
-import java.io.FileInputStream
 import javax.swing.JComponent
 
 class SettingsDialog(private val project: Project?) : DialogWrapper(project, true) {
@@ -44,6 +42,8 @@ class SettingsDialog(private val project: Project?) : DialogWrapper(project, tru
             else -> ""
         }
 
+    private val configService = ConfigService.getInstance()
+
     init {
         title = "Build Finish Settings"
         init()
@@ -56,8 +56,6 @@ class SettingsDialog(private val project: Project?) : DialogWrapper(project, tru
             defaultSoundRadioButton.isSelected -> null
 
             customSoundRadioButton.isSelected -> {
-                println("customSucceedSoundPath : $successPathText")
-                println("customSucceedSoundPath : $failedPathText")
                 if (successPathText.isEmpty() && failedPathText.isEmpty()) {
                     null
                 } else if ( // (path is not empty) && (file is not valid)
@@ -80,7 +78,6 @@ class SettingsDialog(private val project: Project?) : DialogWrapper(project, tru
     }
 
     override fun doOKAction() {
-        println("@@@doOKAction - successPathText : ${successPathText}")
         if (successPathText.isNotEmpty()) {
             copySoundEffect(successPathText, SoundType.BUILD_SUCCESS)
         }
@@ -88,6 +85,8 @@ class SettingsDialog(private val project: Project?) : DialogWrapper(project, tru
         if (failedPathText.isNotEmpty()) {
             copySoundEffect(failedPathText, SoundType.BUILD_FAILED)
         }
+
+        configService.setShouldPlayDefaultSound(defaultSoundRadioButton.isSelected)
 
         super.doOKAction()
     }
@@ -112,13 +111,6 @@ class SettingsDialog(private val project: Project?) : DialogWrapper(project, tru
         }.onFailure {
             println("@@@ error occurred in BuildFinishNotifier : $it")
         }
-    }
-
-    private fun playSound(audioFile: File) {
-        val mp3FilePath = audioFile.path
-        val inputStream = BufferedInputStream(FileInputStream(mp3FilePath))
-        val player = AdvancedPlayer(inputStream)
-        player.play()
     }
 
     private fun isNotValidFile(path: String): Boolean {
