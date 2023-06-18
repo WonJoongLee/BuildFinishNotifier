@@ -115,11 +115,6 @@ class SettingsDialog(private val project: Project?) : DialogWrapper(project, tru
         }
     }
 
-    private fun isNotValidFile(path: String): Boolean {
-        val pathFile = File(path)
-        return !pathFile.exists() || !pathFile.isFile
-    }
-
     private fun newTempDialog(): DialogPanel {
         return panel {
             group("Play Sound") {
@@ -161,6 +156,11 @@ class SettingsDialog(private val project: Project?) : DialogWrapper(project, tru
                 }.enabledIf(customSoundRadioButton.selected)
             }
         }
+    }
+
+    private fun isNotValidFile(path: String): Boolean {
+        val pathFile = File(path)
+        return !pathFile.exists() || !pathFile.isFile
     }
 
     private fun isFileAudioExtension(filePath: String): Boolean {
