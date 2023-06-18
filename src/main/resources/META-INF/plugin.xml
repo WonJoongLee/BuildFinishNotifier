@@ -7,7 +7,8 @@
     This plugin is designed to notify you when your build process is complete with sound effects.<br><br>
     Usage:<br>
     - If the build is successful, a success sound effect will be played.<br>
-    - If the build failed, a fail sound effect will be played.<br><br>
+    - If the build failed, a fail sound effect will be played.
+    - You can apply your own sound effects with the .mp3 file extension.<br><br>
     Note: Please make sure your speakers or headphones are properly connected and the volume is adjusted accordingly.<br>
   ]]></description>
 
