@@ -62,9 +62,8 @@ class SettingsDialog(private val project: Project?) : DialogWrapper(project, tru
                     (failedPathText.isNotEmpty() && isNotValidFile(failedPathText))
                 ) {
                     ValidationInfo("Please check the file path again.", customSoundRadioButton)
-                } else if ( // (path is not empty) && (file doesn't end with ".mp3")
-                    (successPathText.isNotEmpty() && !successPathText.endsWith(".mp3")) ||
-                    (failedPathText.isNotEmpty() && !failedPathText.endsWith(".mp3"))
+                } else if ( // (check file audio extension)
+                    !isFileAudioExtension(successPathText) || !isFileAudioExtension(failedPathText)
                 ) {
                     ValidationInfo("The sound effect file does not end in \"mp3\".", customSoundRadioButton)
                 } else {
@@ -162,5 +161,9 @@ class SettingsDialog(private val project: Project?) : DialogWrapper(project, tru
                 }.enabledIf(customSoundRadioButton.selected)
             }
         }
+    }
+
+    private fun isFileAudioExtension(filePath: String): Boolean {
+        return filePath.isEmpty() || (filePath.endsWith(".mp3") || filePath.endsWith(".wav"))
     }
 }
