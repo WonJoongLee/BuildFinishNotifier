@@ -28,7 +28,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("213")
-        untilBuild.set("231.*")
+        untilBuild.set("232.*")
         changeNotes.set("This plugin is designed to notify you with sound effects when your build process succeeds or failed.")
     }
 
