@@ -28,7 +28,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("213")
-        untilBuild.set("232.*")
+        untilBuild.set("233.*")
         changeNotes.set("It now supports the Iguana version of Android Studio!")
     }
 
