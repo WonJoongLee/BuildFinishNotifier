@@ -1,6 +1,6 @@
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.8.10"
+    id("org.jetbrains.kotlin.jvm") version "1.9.23"
     id("org.jetbrains.intellij") version "1.13.3"
 }
 
@@ -13,7 +13,7 @@ repositories {
 
 intellij {
     plugins.set(listOf("Kotlin", "android"))
-    localPath.set("/Applications/Android Studio.app/Contents")
+    version.set("2023.2.2")
 }
 
 tasks {
@@ -29,7 +29,7 @@ tasks {
     patchPluginXml {
         sinceBuild.set("213")
         untilBuild.set("233.*")
-        changeNotes.set("It now supports the Iguana version of Android Studio!")
+        changeNotes.set("It now supports up to the Koala version of Android Studio!")
     }
 
     signPlugin {
