@@ -28,7 +28,8 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("213")
-        changeNotes.set("Removed the Android studio version limit. Have a great day!")
+        untilBuild.set("242.*")
+        changeNotes.set("Fixed issues with compatibility in the Ladybug version of Android Studio.")
     }
 
     signPlugin {
