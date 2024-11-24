@@ -28,8 +28,8 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("213")
-        untilBuild.set("242.*")
-        changeNotes.set("Fixed issues with compatibility in the Ladybug version of Android Studio.")
+        untilBuild.set("243.*")
+        changeNotes.set("Fixed issues with compatibility in the Meerkat version of Android Studio.")
     }
 
     signPlugin {
