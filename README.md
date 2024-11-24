@@ -18,6 +18,7 @@ Search for **"Build finish notifier"** in Android studio plugins.
 </p>
 
 ## Supported Android studio version
+- Meerkat(2024.3.x)
 - Koala(2024.1.x)
 - JellyFish(2023.3.x)
 - Iguana(2023.2.x)

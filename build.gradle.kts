@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.isaac"
-version = "1.0.5"
+version = "1.0.6"
 
 repositories {
     mavenCentral()
@@ -28,8 +28,8 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("213")
-        untilBuild.set("241.*")
-        changeNotes.set("Fixed issues with compatibility in the Koala version of Android Studio.")
+        untilBuild.set("243.*")
+        changeNotes.set("Fixed issues with compatibility in the Meerkat version of Android Studio.")
     }
 
     signPlugin {
