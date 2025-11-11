@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.isaac"
-version = "1.0.8"
+version = "1.0.9"
 
 repositories {
     mavenCentral()
@@ -28,8 +28,8 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("213")
-        untilBuild.set("251.*")
-        changeNotes.set("Fixed issues with compatibility in the Narwhal version of Android Studio.")
+        untilBuild.set("252.*")
+        changeNotes.set("Fixed issues with compatibility in the Otter version of Android Studio.")
     }
 
     signPlugin {
