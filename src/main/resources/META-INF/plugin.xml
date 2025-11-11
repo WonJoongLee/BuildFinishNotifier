@@ -4,6 +4,7 @@
     <vendor email="realjoong@gmail.com">IsaacCompany</vendor>
     <description><![CDATA[
     <h2>Build Completion Sound Effect</h2><br>
+    <b>Last update - 2025.11.12</b>
     This plugin is designed to notify you when your build process is complete with sound effects.<br><br>
     Usage:<br>
     - If the build is successful, a success sound effect will be played.<br>
