@@ -18,6 +18,7 @@ Search for **"Build finish notifier"** in Android studio plugins.
 </p>
 
 ## Supported Android studio version
+- Panda(2025.3.x)
 - Otter(2025.2.x)
 - Narwhal(2025.1.x)
 - Meerkat(2024.3.x)
