@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.isaac"
-version = "1.0.10"
+version = "1.0.11"
 
 repositories {
     mavenCentral()
@@ -28,8 +28,8 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("213")
-        untilBuild.set("253.*")
-        changeNotes.set("Fixed issues with compatibility in the Panda version of Android Studio.")
+        untilBuild.set("263.*")
+        changeNotes.set("Extended compatibility to cover Android Studio builds up to 263.*.")
     }
 
     signPlugin {
