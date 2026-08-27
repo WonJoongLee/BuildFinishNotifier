@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.isaac"
-version = "1.0.11"
+version = "1.0.12"
 
 repositories {
     mavenCentral()
@@ -28,8 +28,11 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("213")
-        untilBuild.set("263.*")
-        changeNotes.set("Extended compatibility to cover Android Studio builds up to 263.*.")
+        // No upper bound: a new Android Studio release should not require a plugin release.
+        // Note that simply omitting this line does NOT work - gradle-intellij-plugin then
+        // falls back to a convention derived from `intellij.version` (232.* here).
+        untilBuild.set(provider { null })
+        changeNotes.set("Removed the upper IDE build limit, so new Android Studio releases no longer require a plugin update.")
     }
 
     signPlugin {

@@ -18,7 +18,10 @@ Search for **"Build finish notifier"** in Android studio plugins.
 </p>
 
 ## Supported Android studio version
-- Quail(2025.4.x)
+Dolphin (2021.3.x) and newer. The plugin no longer declares an upper version limit, so it keeps
+working on Android Studio releases that ship after any given plugin release.
+
+- Quail(2026.1.x)
 - Panda(2025.3.x)
 - Otter(2025.2.x)
 - Narwhal(2025.1.x)
